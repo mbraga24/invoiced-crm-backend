@@ -2,7 +2,7 @@
 
 ### Set up CORS
 
-_Go to your gem files and uncomment the following line:_
+_Go to your gem file and uncomment the following line:_
 ```
 gem 'rack-cors'
 ```
@@ -10,6 +10,9 @@ _Run `bundle install`_
 
 _Go to `cors.rb` file and paste the following code:_
 ```
+===============================================
+      config -> initializers -> cors.rb
+===============================================
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
     origins '*'
