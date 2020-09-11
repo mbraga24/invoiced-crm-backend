@@ -1,24 +1,22 @@
-# README
+# Invoiced CRM Application - Backend
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### Set up CORS
 
-Things you may want to cover:
+_Go to your gem files and uncomment the following line:_
+```
+gem 'rack-cors'
+```
+_Run `bundle install`_
 
-* Ruby version
+_Go to `cors.rb` file and paste the following code:_
+```
+Rails.application.config.middleware.insert_before 0, Rack::Cors do
+  allow do
+    origins '*'
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+    resource '*',
+      headers: :any,
+      methods: [:get, :post, :put, :patch, :delete, :options, :head]
+  end
+end
+```
