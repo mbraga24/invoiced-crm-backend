@@ -1,6 +1,8 @@
 # Invoiced CRM Application - Backend
 
-### Set up CORS
+### Set up CORS 
+
+[gem](https://github.com/cyu/rack-cors)
 
 _Go to your gem file and uncomment the following line:_
 ```
