@@ -233,3 +233,5 @@ _Choose the attributes to be displayed in json format in the partial and use the
     :email
   )
 ```
+
+___Do not foget that when using JBuilder you need instance variables in your controllers___
