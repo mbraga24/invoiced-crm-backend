@@ -73,7 +73,7 @@ _Add gem to the gem file_
 ```
 gem 'simple_token_authentication', '~> 1.0'
 ```
-_Run bundle install in your termianl_
+_Run bundle in your termianl_
 ```
 bundle install
 ```
@@ -82,7 +82,7 @@ bundle install
 # app/models/user.rb
 
 class User < ActiveRecord::Base
-  acts_as_token_authenticatable <===== Add this line at the top
+  acts_as_token_authenticatable <===== Add this line
 
   # Note: you can include any module you want. If available,
   # token authentication will be performed before any other
