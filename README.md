@@ -138,5 +138,19 @@ class ApplicationController < ActionController::API
   # together and return the current_user that we can use in our controllers.
 
 end
+```
+### Build destroy action body in sessions_controller
+```
+# app/controllers/v1/sessions_controller.rb
+...
+  def destroy
+    current_user && current_user.authentication_token = nil
 
+    if current_user.save 
+      head(:ok)
+    else
+      head(:unauthorized)
+    end
+  end
+...
 ```
