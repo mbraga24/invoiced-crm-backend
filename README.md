@@ -66,3 +66,42 @@ end
   end
 end
 ```
+## AUTHENTICATION OPTION: 1
+
+### Add simple_token_authentication [gem](https://github.com/gonzalo-bulnes/simple_token_authentication)
+_Add gem to the gem file_
+```
+gem 'simple_token_authentication', '~> 1.0'
+```
+_Run bundle install in your termianl_
+```
+bundle install
+```
+### Make models token authenticatable
+```
+# app/models/user.rb
+
+class User < ActiveRecord::Base
+  acts_as_token_authenticatable <===== Add this line at the top
+
+  # Note: you can include any module you want. If available,
+  # token authentication will be performed before any other
+  # Devise authentication method.
+  #
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable and :omniauthable
+  devise :invitable, :database_authenticatable,
+         :recoverable, :rememberable, :trackable, :validatable,
+         :lockable
+
+  # ...
+end
+```
+### Add the authentication_token column to the user's table
+```
+rails g migration add_authentication_token_to_users "authentication_token:string{30}:uniq"
+```
+_Run migration_
+```
+rake db:migrate
+```
