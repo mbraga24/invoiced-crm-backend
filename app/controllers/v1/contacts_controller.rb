@@ -14,7 +14,7 @@ class V1::ContactsController < ApplicationController
   end
 
   def destroy
-    @contact = Contact.where(id: params[:id]).first
+    @contact = Contact.find_by(id: params[:id])
 
     # head is just a way for rails to return just the content in the header
     if @contact.destroy
