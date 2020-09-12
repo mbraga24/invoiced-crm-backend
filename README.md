@@ -2,7 +2,7 @@
 
 ### Setting up CORS [gem](https://github.com/cyu/rack-cors)
 
-_Go to your gem file and uncomment the following line:_
+_Uncomment the following gem in your gem file_
 ```
 gem 'rack-cors'
 ```
@@ -66,7 +66,7 @@ end
   end
 end
 ```
-## AUTHENTICATION OPTION: 1
+## AUTHENTICATION OPTION: 1 - simple_token_authentication
 
 ### Add simple_token_authentication [gem](https://github.com/gonzalo-bulnes/simple_token_authentication)
 _Add gem to the gem file_
@@ -153,4 +153,83 @@ end
     end
   end
 ...
+```
+### Rendering views with JBuilder 
+_Uncomment the following gem in your gem file_
+```
+gem 'jbuilder', '~> 2.7'
+```
+_Run bundle in your terminal_
+```
+bundle install
+```
+## Sessions with JBuilder
+_Create the following folder structure_
+```
+  views -> v1 -> sessions -> create.json.jbuilder
+```
+_Choose the attributes to be displayed in json format_
+```
+# views/v1/sessions/create.json.jbuilder
+
+  json.data do 
+    json.user do
+      json.call(
+        @user, <==== (Notice the instance variable from the controller)
+        :email,
+        :authentication_token
+      )
+    end
+  end
+```
+_Change the syntax in the create action in the sessions_controller.rb_
+```
+# app/controllers/v1/sessions_controller.rb
+
+ def create
+    @user = User.find_by(email: params[:email])
+
+    if @user && @user.valid_password?(params[:password])
+      # use the :create action in the render function to display the attributes
+      render :create, status: :created
+    else
+      heade(:unauthorized)
+    end
+  end
+```
+## Contacts with JBuilder - Partials
+_Create the following folder structure_
+```
+  views -> v1 -> contacts -> index.json.jbuilder
+  views -> v1 -> contacts -> create.json.jbuilder
+  views -> v1 -> contacts -> _contact_.json.jbuilder <==== PARTIAL
+```
+_Choose the attributes to be displayed in json format in the partial and use the partial in different actions_
+```
+# views/v1/contacts/index.json.jbuilder
+
+  json.data do 
+    json.array! @contacts do |contact| 
+      json.partial! 'v1/contacts/contact', contact: contact <==== USE PARTIAL
+    end
+  end
+
+
+# views/v1/contacts/create.json.jbuilder
+  json.data do
+    json.user do
+      json.partial! 'v1/contacts/contact', contact: @contact <==== USE PARTIAL - (Notice the instance variable from the controller)
+    end
+  end
+
+# views/v1/contacts/_contact_.json.jbuilder
+
+  # Partial file with the attributes that will be shared in different JBuilder actions
+  json.call(
+    contact, 
+    :id, 
+    :first_name, 
+    :last_name, 
+    :email
+  )
 ```
