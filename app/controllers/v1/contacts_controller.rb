@@ -6,8 +6,9 @@ class V1::ContactsController < ApplicationController
   end
 
   def create
+    # byebug
     @contact = Contact.new(contact_params)
-
+    
     @contact.save
     render json: @contact, status: :created
   end
@@ -26,6 +27,6 @@ class V1::ContactsController < ApplicationController
   private
 
   def contact_params
-    params.require(:contacts).permit(:first_name, :last_name, :email)
+    params.require(:contact).permit(:first_name, :last_name, :email)
   end
 end
