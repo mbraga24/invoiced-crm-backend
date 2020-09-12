@@ -45,3 +45,24 @@ _Run migration_
 ```
 rails db:migrate
 ```
+### Create sessions_controller
+```
+class V1::SessionsController < ApplicationController
+
+  def create
+  end
+
+  def destroy
+  end
+
+end
+```
+### Update routes.rb
+```
+  # devise_for :users ====> Because I will build a custom authentication I won't use devise default routes
+  namespace :v1 do
+    resources :contacts
+    resources :sessions, only: [:create, :destroy] <==== Add controller and actions
+  end
+end
+```
