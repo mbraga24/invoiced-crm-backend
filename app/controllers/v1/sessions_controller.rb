@@ -7,5 +7,5 @@ class V1::SessionsController < ApplicationController
   def destroy
 
   end
-  
+
 end
