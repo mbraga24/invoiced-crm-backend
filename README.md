@@ -1,6 +1,6 @@
 # Invoiced CRM Application - Backend
 
-### Set up CORS [gem](https://github.com/cyu/rack-cors)
+### Setting up CORS [gem](https://github.com/cyu/rack-cors)
 
 _Go to your gem file and uncomment the following line:_
 ```
@@ -22,4 +22,14 @@ Rails.application.config.middleware.insert_before 0, Rack::Cors do
       methods: [:get, :post, :put, :patch, :delete, :options, :head]
   end
 end
+```
+
+### Setting up DEVISE [gem](https://github.com/heartcombo/devise)
+_Add devise gem to the gem file_
+```
+gem 'devise'
+```
+_Run bundle in your terminal_
+```
+bundle install
 ```
