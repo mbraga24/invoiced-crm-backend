@@ -121,3 +121,22 @@ rake db:migrate
   end
 ...
 ```
+### Allow controllers to handle token authentication
+```
+# app/controllers/application_controller.rb
+
+class ApplicationController < ActionController::API
+
+  # When logged in this will allow to get the current user's object when the correct headers are passed in.
+  acts_as_token_authentication_handler_for User, fallback: :none <===== Add this line
+
+  # (From the docs) 
+  # The token authentification handler for User watches the following headers:
+  # `X-User-Token, X-User-Email`
+
+  # By passing the email and the token as a header the simple_authentication_token gem and devise work 
+  # together and return the current_user that we can use in our controllers.
+
+end
+
+```
