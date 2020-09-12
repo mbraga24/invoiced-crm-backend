@@ -1,5 +1,5 @@
-# Invoiced CRM Application - Backend
-## Step by step set up of tech stack
+# Invoiced CRM Application - Backend 
+__=> Step by step set up of tech stack__
 
 ### Setting up CORS [gem](https://github.com/cyu/rack-cors)
 
