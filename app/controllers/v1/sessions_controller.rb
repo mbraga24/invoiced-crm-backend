@@ -1,11 +1,12 @@
 class V1::SessionsController < ApplicationController
 
   def create
-    user = User.find_by(email: params[:email])
+    @user = User.find_by(email: params[:email])
 
-    if user && user.valid_password?(params[:password])
+    if @user && @user.valid_password?(params[:password])
       # render json: user, status: :created
-      render json: user.as_json(only: [:email, :authentication_token]), status: :created
+      # render json: user.as_json(only: [:email, :authentication_token]), status: :created
+      render :create, status: :created
     else
       heade(:unauthorized)
     end
