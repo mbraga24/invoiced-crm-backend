@@ -45,9 +45,9 @@ _Run migration_
 ```
 rails db:migrate
 ```
-### Create sessions_controller
+### Create sessions_controller and actions
 ```
-class V1::SessionsController < ApplicationController
+class V1::SessionsController < ApplicationController 
 
   def create
   end
