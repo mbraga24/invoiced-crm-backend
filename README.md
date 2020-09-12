@@ -163,7 +163,7 @@ _Run bundle in your terminal_
 ```
 bundle install
 ```
-## Sessions with JBuilder
+#### Sessions with JBuilder
 _Create the following folder structure_
 ```
   views -> v1 -> sessions -> create.json.jbuilder
@@ -197,7 +197,7 @@ _Change the syntax in the create action in the sessions_controller.rb_
     end
   end
 ```
-## Contacts with JBuilder - Partials
+#### Contacts with JBuilder - Partials
 _Create the following folder structure_
 ```
   views -> v1 -> contacts -> index.json.jbuilder
