@@ -59,10 +59,10 @@ end
 ```
 ### Update routes.rb
 ```
-  # devise_for :users ====> Because I will build a custom authentication I won't use devise default routes
+  devise_for :users
   namespace :v1 do
     resources :contacts
-    resources :sessions, only: [:create, :destroy] <==== Add controller and actions
+    resources :sessions, only: [:create, :destroy] <==== Add route and actions
   end
 end
 ```
