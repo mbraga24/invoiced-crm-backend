@@ -190,7 +190,7 @@ _Change the syntax in the create action in the sessions_controller.rb_
     @user = User.find_by(email: params[:email])
 
     if @user && @user.valid_password?(params[:password])
-      # use the :create action in the render function to display the attributes
+      # use the :create action in the render function to display that object's attributes
       render :create, status: :created
     else
       heade(:unauthorized)
@@ -216,6 +216,7 @@ _Choose the attributes to be displayed in json format in the partial and use the
 
 
 # views/v1/contacts/create.json.jbuilder
+
   json.data do
     json.user do
       json.partial! 'v1/contacts/contact', contact: @contact <==== USE PARTIAL - (Notice the instance variable from the controller)
@@ -232,6 +233,26 @@ _Choose the attributes to be displayed in json format in the partial and use the
     :last_name, 
     :email
   )
+```
+_Change actions in the contacts_controller.rb_
+
+```
+class V1::ContactsController < ApplicationController
+  def index
+    @contacts = Contact.all
+
+    # use the :index action in the render function to display the array of contacts and its attributes
+    render :index, status: :ok <==== :index action
+  end
+
+  def create
+    @contact = Contact.new(contact_params)
+    
+    @contact.save
+    # use the :create action in the render function to display that object's attributes
+    render :create, status: :created <==== :create action 
+  end
+end
 ```
 
 ___Do not foget that when using JBuilder you need instance variables in your controllers___
