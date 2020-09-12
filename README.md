@@ -33,3 +33,15 @@ _Run bundle in your terminal_
 ```
 bundle install
 ```
+_Run the generator_
+```
+rails generate devise:install
+```
+_Generate the User model_
+```
+rails generate devise user
+```
+_Run migration_
+```
+rails db:migrate
+```
