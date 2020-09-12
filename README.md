@@ -105,3 +105,19 @@ _Run migration_
 ```
 rake db:migrate
 ```
+### Build create action body in sessions_controller
+```
+# app/controllers/v1/sessions_controller.rb
+...
+  def create
+    user = User.find_by(email: params[:email])
+
+    if user && user.valid_password?(params[:password])
+      # return email and authentication_token on the client side
+      render json: user.as_json(only: [:email, :authentication_token]), status: :created
+    else
+      heade(:unauthorized)
+    end
+  end
+...
+```
